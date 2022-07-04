@@ -42,12 +42,12 @@
                                                     </span>
                                             <span class="text-dark d-block">{{ $submission->phone_number }}</span>
                                         </div>
-                                        @isset($submission->whatsapp)
+                                        @isset($submission->whatsapp_number)
                                         <div class="widget-payment-request-info-item">
                                                     <span class="widget-payment-request-info-title d-block">
                                                         Whatsapp Number
                                                     </span>
-                                            <span class="text-dark d-block">{{ $submission->whatsapp }}</span>
+                                            <span class="text-dark d-block">{{ $submission->whatsapp_number }}</span>
                                         </div>
                                         @endisset
                                         <div class="widget-payment-request-info-item">
@@ -61,12 +61,6 @@
                                                         Nationality
                                                     </span>
                                             <span class="text-dark d-block">{{ $submission->nationality }}</span>
-                                        </div>
-                                        <div class="widget-payment-request-info-item">
-                                                    <span class="widget-payment-request-info-title d-block">
-                                                        Language
-                                                    </span>
-                                            <span class="text-dark d-block">{{ $submission->language }}</span>
                                         </div>
                                         <div class="widget-payment-request-info-item">
                                                     <span class="widget-payment-request-info-title d-block">

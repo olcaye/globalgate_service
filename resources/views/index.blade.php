@@ -51,7 +51,7 @@
         <div class="row">
             <!-- ***** Pricing Item Start ***** -->
             <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
-                <div class="pricing-item">
+                <div class="pricing-item" id="normal-item">
                     <div class="pricing-header normal-plan">
                         <h3 class="pricing-title">NORMAL</h3>
                     </div>
@@ -61,7 +61,6 @@
                             <span class="price">50</span>
                             <span class="period">/ 5 Months</span>
                             <br>10% Service Discount
-
                         </div>
                         <ul class="list plan-feature-list">
                             <li class="active">School Registration</li>
@@ -90,7 +89,7 @@
 
             <!-- ***** Pricing Item Start ***** -->
             <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
-                <div class="pricing-item active silver">
+                <div class="pricing-item active" id="silver-item">
                     <div class="pricing-header silver">
                         <h3 class="pricing-title">SILVER</h3>
                     </div>
@@ -99,15 +98,18 @@
                             <span class="currency">€</span>
                             <span class="price">250</span>
                             <span class="period">/ 7 Months</span>
-                            <div class="highlighted-features d-flex flex-column">
-                                <span>15% Service Discount</span>
-                                <span>10% University Fee reduction</span>
-                                <span>5% private School Fee reduction</span>
-                                <span>+ Normal Package Services</span>
-                                <span>* One Semester Only</span>
-                            </div>
-
+                            <br><span>15% Service Discount</span>
                         </div>
+                        <div class="highlighted-features d-flex flex-column">
+                            <span>10% University Fee reduction *</span>
+                            <span>5% private School Fee reduction *</span>
+                            <span>+ Normal Package Services</span>
+                            <div class="notes">
+                                <small>* This features are available for only one semester</small>
+                                <small>** In bank transfer, the price will include additional taxes.</small>
+                            </div>
+                        </div>
+
                         <ul class="list">
                             <li class="active">Official Invitation to TRNC</li>
                             <li class="active">Visa Application</li>
@@ -133,7 +135,7 @@
 
             <!-- ***** Pricing Item Start ***** -->
             <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
-                <div class="pricing-item">
+                <div class="pricing-item" id="gold-item">
                     <div class="pricing-header gold">
                         <h3 class="pricing-title">GOLDEN</h3>
                     </div>
@@ -142,15 +144,16 @@
                             <span class="currency">€</span>
                             <span class="price">350</span>
                             <span class="period">/ 10 Months</span>
-                            <div class="highlighted-features d-flex flex-column">
-                                <span>25% Service Discount</span>
-                                <span style="padding-top:20px">20% University Fee reduction *</span>
-                                <span>10% private School Fee reduction *</span>
-                                <span>+ Normal & Silver Packages Services</span>
+                            <br><span>25% Service Discount</span>
+                        </div>
+                        <div class="highlighted-features d-flex flex-column">
+                            <span style="padding-top:20px">20% University Fee reduction *</span>
+                            <span>10% private School Fee reduction *</span>
+                            <span>+ Normal & Silver Packages Services</span>
+                            <div class="notes">
                                 <small>* This features are available for only one semester</small>
                                 <small>** In bank transfer, the price will include additional taxes.</small>
                             </div>
-
                         </div>
                         <ul class="list">
                             <li class="active">Family Portal</li>
@@ -286,14 +289,11 @@
         <div class="row">
             <div class="col-lg-5 col-md-12 col-sm-12">
                 <img src="{{ asset('images/theme/logo22.png') }}" class="logo" alt="" width="50" height="50">
-                <div class="text">Test Texts</div>
-                  {{--  <ul class="social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github"></i></a></li>
-                    </ul>--}}
+               {{-- <div class="text">Test Texts</div>--}}
+                    <ul class="social">
+                        <li><a href="https://www.facebook.com/globalgate.services/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/p/CfjB1VwKYxc/?igshid=YmMyMTA2M2Y=" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                 <h5>Helpful Links</h5>
@@ -382,8 +382,7 @@
             success: function(response) {
                 country = (response.country);
                 $("#nationality").countrySelect({
-                        defaultCountry: country.toLowerCase(),
-                        responsiveDropdown: true
+                        defaultCountry: country.toLowerCase()
                     }
                 );
             },

@@ -1797,7 +1797,24 @@ pricing
 }
 
 .pricing-item .highlighted-features {
-    margin: 10px;
+    margin: 0;
+    text-align: center;
+    color: white;
+    padding: 15px 15px;
+}
+
+#silver-item .highlighted-features {
+    background: #799fc3;
+}
+
+#gold-item .highlighted-features {
+    background: #f58c29;
+}
+
+.pricing-item .highlighted-features .notes {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing-item .pricing-header {
@@ -1870,6 +1887,10 @@ pricing
   margin-bottom: 40px;
 }
 
+.pricing-item .pricing-body > .list {
+    margin-top: 30px;
+}
+
 .pricing-item .pricing-body .price-wrapper {
   text-align: center;
   padding-top: 20px;
@@ -1877,7 +1898,7 @@ pricing
   background: #F0EFFF;
   width: 100%;
   margin: auto;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
 
 .pricing-item .pricing-body .price-wrapper .currency {
