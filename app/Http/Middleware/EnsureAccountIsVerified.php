@@ -22,7 +22,7 @@ class EnsureAccountIsVerified
 
         if (!$request->user()->is_verified) {
             auth()->logout();
-            return redirect()->route('home');
+            return redirect()->route('unverified');
         }
     }
 }

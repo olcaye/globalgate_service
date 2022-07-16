@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Auth\Agency\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\UnverifiedController;
 use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +50,8 @@ Route::middleware(['auth','confirmed_account'])->prefix('admin')->name('admin.')
 Route::post('/new-service', [PackageController::class, 'store'])->name('service-submission');
 
 Route::middleware(['auth:agency','agency', 'confirmed_account'])->prefix('agency')->name('agency.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Agency\DashboardController::class, 'index'])->name('dashboard');
-
+    /*Route::get('/', [\App\Http\Controllers\Agency\DashboardController::class, 'index'])->name('dashboard');*/
+    Route::get('/', [\App\Http\Controllers\Agency\ApplicationController::class, 'index'])->name('application.dashboard');
     Route::get('/applications', [\App\Http\Controllers\Agency\ApplicationController::class, 'index'])->name('application.index');
     Route::post('/new-application', [\App\Http\Controllers\Agency\ApplicationController::class, 'store'])->name('application.store');
     Route::get('/new-application', [\App\Http\Controllers\Agency\ApplicationController::class, 'showForm'])->name('application.form');
@@ -66,3 +67,6 @@ Route::prefix('agency')->name('agency.')->group(function () {
     Route::post('/login', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'login'])->name('login.post');
     Route::post('/logout', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'logout'])->name('logout');
 });
+
+
+Route::get('/unverified', [UnverifiedController::class, 'index'])->name('unverified');

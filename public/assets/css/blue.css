@@ -439,6 +439,13 @@ blockquote .author {
 }
 
 @media (max-width: 991px) {
+    .section.colored {
+        padding-top: 240px;
+    }
+  .header-logo {
+    left: 50% !important;
+    transform: translate(-50%, 0);
+  }
   html, body {
     overflow-x: hidden;
   }

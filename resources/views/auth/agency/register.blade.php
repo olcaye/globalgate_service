@@ -63,11 +63,6 @@
         }
     </style>
 </head>
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div>{{$error}}</div>
-    @endforeach
-@endif
 
 <body class="text-center">
 <form action="{{ route('agency.register.post') }}" class="form-signin" method="post">
