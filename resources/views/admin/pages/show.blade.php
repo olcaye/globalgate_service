@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-
+@section('title', 'Submissions')
 @section('content')
 
     <div class="app-content">
@@ -15,8 +15,6 @@
                                 <span class="ps-2">Go Back</span>
                             </div>
                         </a>
-
-
                         <div class="card widget widget-payment-request">
                             <div class="card-header">
                                 <h5 class="card-title">Submission Details</h5>
@@ -61,6 +59,18 @@
                                                         Nationality
                                                     </span>
                                             <span class="text-dark d-block">{{ $submission->nationality }}</span>
+                                        </div>
+                                        <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        Agency
+                                                    </span>
+                                            <span class="text-dark d-block">
+                                                @isset($agency['name'])
+                                                {{ $agency['name'] }}
+                                                @else
+                                                Global Gate
+                                                @endisset
+                                            </span>
                                         </div>
                                         <div class="widget-payment-request-info-item">
                                                     <span class="widget-payment-request-info-title d-block">

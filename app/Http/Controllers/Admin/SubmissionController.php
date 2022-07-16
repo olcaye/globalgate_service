@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-    public function index(SubmissionsDataTable $dataTable) {
-        return $dataTable->render('admin.pages.index');
+    public function index(SubmissionsDataTable $dataTable, Request $request) {
+        return $dataTable->with('agency_id', $request->query('agency'))->render('admin.pages.index');
     }
 
     public function show($id) {
-        return view('admin.pages.show', ['submission' => Submission::where('id', '=', $id)->first()]);
+        $submission = Submission::with('agency')->firstWhere('id', $id);
+        $agency = $submission->agency;
+        return view('admin.pages.show', ['submission' => $submission, 'agency' => $agency]);
     }
 
     public function update(Request $request) {

@@ -31,6 +31,12 @@
 @include('errors.toast')
 
 <!-- ***** Pricing Plans Start ***** -->
+<div class="container header-wrapper">
+    <div class="header-logo">
+        <img src="{{ asset('images/theme/logo22.png') }}" class="logo" alt="" width="150" height="150">
+    </div>
+</div>
+
 <section class="section colored" id="pricing-plans">
     <div class="container">
         <!-- ***** Section Title Start ***** -->
@@ -52,6 +58,10 @@
             <!-- ***** Pricing Item Start ***** -->
             <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
                 <div class="pricing-item" id="normal-item">
+                    <div class="ribbon-wrap">
+                        <span class="ribbon">Free Consultant</span>
+                    </div>
+
                     <div class="pricing-header normal-plan">
                         <h3 class="pricing-title">NORMAL</h3>
                     </div>
@@ -90,6 +100,9 @@
             <!-- ***** Pricing Item Start ***** -->
             <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
                 <div class="pricing-item active" id="silver-item">
+                    <div class="ribbon-wrap">
+                        <span class="ribbon">Free Consultant</span>
+                    </div>
                     <div class="pricing-header silver">
                         <h3 class="pricing-title">SILVER</h3>
                     </div>
@@ -136,6 +149,9 @@
             <!-- ***** Pricing Item Start ***** -->
             <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
                 <div class="pricing-item" id="gold-item">
+                    <div class="ribbon-wrap">
+                        <span class="ribbon">Free Consultant</span>
+                    </div>
                     <div class="pricing-header gold">
                         <h3 class="pricing-title">GOLDEN</h3>
                     </div>
@@ -288,7 +304,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5 col-md-12 col-sm-12">
-                <img src="{{ asset('images/theme/logo22.png') }}" class="logo" alt="" width="50" height="50">
+                <img src="{{ asset('images/theme/logo22.png') }}" class="logo" alt="" width="100" height="100">
                {{-- <div class="text">Test Texts</div>--}}
                     <ul class="social">
                         <li><a href="https://www.facebook.com/globalgate.services/" target="_blank"><i class="fa fa-facebook"></i></a></li>

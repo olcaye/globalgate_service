@@ -9,10 +9,13 @@
     <div class="app-menu">
         <ul class="accordion-menu">
             <li class="sidebar-title">
-                Personal
+                Business
             </li>
             <li class="@if (Request::routeIs('admin.submission')) {{'active-page'}} @endif">
                 <a href="{{ route('admin.submission') }}"><i class="material-icons-two-tone">dashboard</i>Submissions</a>
+            </li>
+            <li class="@if (Request::routeIs('admin.agency.index')) {{'active-page'}} @endif">
+                <a href="{{ route('admin.agency.index') }}"><i class="material-icons-two-tone">store</i>Agencies</a>
             </li>
             <li class="sidebar-title">
                 Other

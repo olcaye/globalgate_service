@@ -1781,7 +1781,7 @@ pricing
 .pricing-item {
   background: #FFFFFF;
   box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
-
+    position: relative;
   margin-bottom: 30px;
   margin-top: 20px;
   /*padding-top: 25px;*/
@@ -2376,8 +2376,8 @@ footer .social {
 
 footer .social li {
   float: left;
-  font-size: 16px;
-  margin-right: 10px;
+    font-size: 30px;
+    margin-right: 25px;
 }
 
 footer .social li a {
@@ -3548,4 +3548,65 @@ preloader
   100% {
     opacity: 0;
   }
+}
+
+.header-wrapper {
+    position: relative;
+}
+
+.header-logo {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    z-index: 9999;
+}
+
+.ribbon {
+    width: 187px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 32px;
+    right: -40px;
+    z-index: 2;
+    overflow: hidden;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 3px gold, 0 21px 5px -18px rgb(0 0 0 / 60%);
+    background: gold;
+    text-align: center;
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.ribbon-wrap {
+    width: 100%;
+    height: 188px;
+    position: absolute;
+    top: -7px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.ribbon-wrap:before {
+    width: 40px;
+    height: 8px;
+    right: 100px;
+    background: #4D6530;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.ribbon-wrap:after {
+    width: 8px;
+    height: 40px;
+    right: 0px;
+    top: 100px;
+    background: #4D6530;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.ribbon-wrap:before, .ribbon-wrap:after {
+    content: "";
+    position: absolute;
 }

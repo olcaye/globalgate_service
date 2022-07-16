@@ -6,6 +6,7 @@ use App\Mail\FormSubmitted;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Mail;
 
 class Submission extends Model
@@ -26,9 +27,13 @@ class Submission extends Model
         'nationality',
         'language',
         'status',
-        'package'
+        'package',
+        'agency_id'
     ];
 
+    public function agency(): BelongsTo {
+        return $this->belongsTo(Agency::class);
+    }
 
     public function getCreatedAtAttribute($value) {
         $date = Carbon::createFromTimestamp(strtotime($value), env("APP_TIMEZONE"));
@@ -46,6 +51,10 @@ class Submission extends Model
     }
 
     public function getNameAttribute($value) {
+        return ucwords($value);
+    }
+
+    public function getPackageAttribute($value) {
         return ucwords($value);
     }
 

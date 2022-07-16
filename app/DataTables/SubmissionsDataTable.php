@@ -31,7 +31,7 @@ class SubmissionsDataTable extends DataTable
      */
     public function query()
     {
-        $submission = Submission::query()->orderBy('created_at','desc');
+        $submission = Submission::query()->where('agency_id', $this->agency_id);
         return $this->applyScopes($submission);
     }
 
