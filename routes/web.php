@@ -9,7 +9,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\UnverifiedController;
 use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +40,7 @@ Auth::routes([
     'verify'   => false,  // for email verification
 ]);
 
-Route::middleware(['auth','confirmed_account'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth:web','confirmed_account'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [SubmissionController::class, 'index'])->name('submission'); //admin.submission
     Route::get('/submissions', [SubmissionController::class, 'index'])->name('submission.index'); //admin.submission
     Route::get('/submission/{id}',[SubmissionController::class, 'show'])->whereNumber('id')->name('submission.show'); //admin.submission/show
@@ -43,13 +48,14 @@ Route::middleware(['auth','confirmed_account'])->prefix('admin')->name('admin.')
 
     Route::get('/agencies/{id}',[AgencyController::class, 'show'])->whereNumber('id')->name('agency.show');
     Route::get('/agencies/', [AgencyController::class, 'index'])->name('agency.index');
+    Route::post('/agency-update', [AgencyController::class, 'update'])->name('agency.confirmation');
 
     Route::get('/agencies/{id}/submissions',[AgencyController::class, 'submissions'])->whereNumber('id')->name('agency.submissions');
 });
 
 Route::post('/new-service', [PackageController::class, 'store'])->name('service-submission');
 
-Route::middleware(['auth:agency','agency', 'confirmed_account'])->prefix('agency')->name('agency.')->group(function () {
+Route::middleware(['auth:agency', 'confirmed_account'])->prefix('agency')->name('agency.')->group(function () {
     /*Route::get('/', [\App\Http\Controllers\Agency\DashboardController::class, 'index'])->name('dashboard');*/
     Route::get('/', [\App\Http\Controllers\Agency\ApplicationController::class, 'index'])->name('application.dashboard');
     Route::get('/applications', [\App\Http\Controllers\Agency\ApplicationController::class, 'index'])->name('application.index');
@@ -66,7 +72,61 @@ Route::prefix('agency')->name('agency.')->group(function () {
     Route::get('/login', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'login'])->name('login.post');
     Route::post('/logout', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'logout'])->name('logout');
+
+    Route::post('/password/email',[\App\Http\Controllers\Auth\Agency\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/password/reset',[\App\Http\Controllers\Auth\Agency\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/password/reset',[\App\Http\Controllers\Auth\Agency\ResetPasswordController::class, 'reset'])->name('password.update');
+    Route::get('/password/reset/{token}',[\App\Http\Controllers\Auth\Agency\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 });
 
 
 Route::get('/unverified', [UnverifiedController::class, 'index'])->name('unverified');
+
+/*Route::get('/reset-password/{token}/{email}', function ($token, $email) {
+    return view('auth.reset-password', [
+        'token' => $token,
+        'email' => $email
+    ]);
+})->middleware('guest')->name('password.reset');
+
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+
+            $user->save();
+
+            event(new PasswordReset($user));
+        }
+    );
+
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware(['guest:agency', 'guest:web'])->name('password.request');
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
+})->middleware(['guest:agency', 'guest:web'])->name('password.email');*/

@@ -10,16 +10,6 @@
             <a href="{{ route('login') }}">Global Gate</a>
         </div>
         <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="{{ route('register') }}">Sign Up</a></p>
-        @if(session('unverified'))
-            <div class="alert alert-custom alert-indicator-bottom indicator-danger" role="alert" style="margin-bottom: 30px;">
-                <div class="alert-content">
-                    <span class="alert-title">Wait!</span>
-                    <span class="alert-text">
-                        {{ session('unverified') }}
-                </span>
-                </div>
-            </div>
-        @endif
         <form role="form" class="text-start" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="auth-credentials m-b-xxl">
@@ -38,7 +28,7 @@
 
             <div class="auth-submit">
                 <button type="submit" class="btn btn-primary">Sign In</button>
-                <a href="#" class="auth-forgot-password float-end">Forgot password?</a>
+                <a href="{{ route('password.request') }}" class="auth-forgot-password float-end">Forgot password?</a>
             </div>
         </form>
         <div class="mt-5">

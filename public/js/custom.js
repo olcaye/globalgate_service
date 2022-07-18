@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     if ($('.toast').hasClass('active')) {
-        $(".toast").toast('show');
+        $('.toast').toast('show');
     }
 });
 

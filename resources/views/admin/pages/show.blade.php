@@ -87,7 +87,7 @@
                                                     <span class="badge badge-warning">Waiting</span>
                                                 @elseif($submission->status === 'Rejected')
                                                     <span class="badge badge-danger">Rejected</span>
-                                                @elseif($submission->status === 'Accepted')
+                                                @elseif($submission->status === 'Approved')
                                                     <span class="badge badge-success">Approved</span>
                                                 @endif
                                             </span>

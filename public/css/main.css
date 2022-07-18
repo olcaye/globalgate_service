@@ -6164,6 +6164,9 @@ span.flatpickr-weekday {
 }
 
 @media (max-width: 1199px) {
+    .app-error .app-error-info {
+        padding-left: 0 !important;
+    }
     .todo-list {
         margin: 25px;
         height: auto;
@@ -6548,6 +6551,7 @@ span.flatpickr-weekday {
 @media (max-width: 1200px) {
     .app-error .app-error-info {
         width: 100%;
+        max-width: 90%;
         text-align: center;
         padding: 0;
     }

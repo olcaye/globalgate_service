@@ -31,7 +31,13 @@ class SubmissionsDataTable extends DataTable
      */
     public function query()
     {
-        $submission = Submission::query()->where('agency_id', $this->agency_id);
+        $agency = $this->agency_id;
+
+        $submission =Submission::query()->where(function ($q) use($agency) {
+            if ($agency) {
+                $q->where('agency_id', $agency);
+            }
+        });
         return $this->applyScopes($submission);
     }
 

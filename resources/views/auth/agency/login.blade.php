@@ -39,7 +39,7 @@
 
             <div class="auth-submit">
                 <button type="submit" class="btn btn-primary">Sign In</button>
-                <a href="#" class="auth-forgot-password float-end">Forgot password?</a>
+                <a href="{{ route('agency.password.request') }}" class="auth-forgot-password float-end">Forgot password?</a>
             </div>
         </form>
 

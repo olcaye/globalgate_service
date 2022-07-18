@@ -1,5 +1,5 @@
 @extends('agency.layouts.app')
-@section('title', \Illuminate\Support\Facades\Auth::user()->name)
+@section('title', Auth::user()->name)
 @section('content')
     <div class="app-content">
         <div class="content-wrapper">

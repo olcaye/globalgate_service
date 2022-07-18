@@ -56,16 +56,27 @@
                                                     </span>
                                             <span class="text-dark d-block">{{ $agency->created_at }}</span>
                                         </div>
-                                       {{-- <div class="widget-payment-request-info-item">
+                                        <div class="widget-payment-request-info-item">
                                                     <span class="widget-payment-request-info-title d-block">
                                                         Status
                                                     </span>
 
-                                        </div>--}}
-                                       {{-- <div class="widget-payment-request-info-item">
-                                            <button type="button" class="btn btn-outline-success submission-confirm" data-status="Approved" data-id="{{ $agency->id }}">Approve</button>
-                                            <button type="button" class="btn btn-outline-danger submission-confirm" data-status="Rejected" data-id="{{ $agency->id }}">Decline</button>
-                                        </div>--}}
+                                            <span class="text-dark d-block">
+                                                 @if($agency->is_verified)
+                                                    <span class="badge badge-success">Approved</span>
+                                                 @else
+                                                    <span class="badge badge-warning">Not Approved</span>
+                                                 @endif
+                                            </span>
+
+                                        </div>
+                                        <div class="widget-payment-request-info-item">
+                                            @if(!$agency->is_verified)
+                                            <button type="button" class="btn btn-outline-success submission-confirm" data-status="1" data-id="{{ $agency->id }}">Approve</button>
+                                            @else
+                                            <button type="button" class="btn btn-outline-danger submission-confirm" data-status="0" data-id="{{ $agency->id }}">Passive</button>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,5 +92,5 @@
 @endsection
 
 @section('footer-scripts')
-    @include('admin.scripts.submission_show')
+    @include('admin.scripts.agency_show')
 @endsection

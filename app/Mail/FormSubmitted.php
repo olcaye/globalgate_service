@@ -32,6 +32,6 @@ class FormSubmitted extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('emails.formsubmitted')->subject('Your Subject Here');
+        return $this->view('emails.formsubmitted')->subject('Information Email');
     }
 }

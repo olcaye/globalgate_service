@@ -2,6 +2,7 @@
 @section('title', 'Submissions')
 @section('content')
     <div class="app-content">
+        @include('alerts.status')
         <div class="content-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -16,7 +17,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Basic</h5>
+                                <h5 class="card-title">List of Submissions</h5>
                             </div>
                             <div class="card-body">
                                 {!! $dataTable->table() !!}

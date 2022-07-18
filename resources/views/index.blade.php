@@ -28,7 +28,7 @@
 </head>
 <body>
 
-@include('errors.toast')
+@include('alerts.toast')
 
 <!-- ***** Pricing Plans Start ***** -->
 <div class="container header-wrapper">
