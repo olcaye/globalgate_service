@@ -8,7 +8,11 @@
                     <div class="col">
                         <div class="page-description">
                             <h1>Agencies</h1>
-                            <span>You're showing the agencies.</span>
+                            @if(request()->get('status') == '0')
+                                <span>You're showing the unverified agencies.</span>
+                            @else
+                                <span>You're showing the agencies.</span>
+                            @endif
                         </div>
                     </div>
                 </div>

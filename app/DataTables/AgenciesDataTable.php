@@ -21,7 +21,7 @@ class AgenciesDataTable extends DataTable
     {
         return datatables()
             ->eloquent($this->query())
-            ->addColumn('action', 'agency.datatable.agency_action');
+            ->addColumn('action', 'admin.datatable.agency_action');
     }
 
     /**
@@ -31,7 +31,15 @@ class AgenciesDataTable extends DataTable
      */
     public function query()
     {
-        $submission = Agency::query()->orderBy('created_at','desc');
+        $is_verified = $this->agency_is_verified;
+
+        $submission = Agency::query()->where(function ($q) use($is_verified) {
+            if ($is_verified == '0') {
+                $q->where('is_verified', '0');
+            } else {
+                $q->where('is_verified', '1');
+            }
+        })->orderBy('created_at','desc');
         return $this->applyScopes($submission);
     }
 

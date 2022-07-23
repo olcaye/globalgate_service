@@ -33,7 +33,7 @@ class SubmissionsDataTable extends DataTable
     {
         $agency = $this->agency_id;
 
-        $submission =Submission::query()->where(function ($q) use($agency) {
+        $submission = Submission::query()->where(function ($q) use($agency) {
             if ($agency) {
                 $q->where('agency_id', $agency);
             }

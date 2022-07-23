@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Notification;
 
 class AgencyController extends Controller
 {
-    public function index(AgenciesDataTable $dataTable) {
-        return $dataTable->render('admin.pages.agency.index');
+    public function index(AgenciesDataTable $dataTable, Request $request) {
+        return $dataTable->with('agency_is_verified', $request->query('status'))->render('admin.pages.agency.index');
     }
 
     public function show($id) {

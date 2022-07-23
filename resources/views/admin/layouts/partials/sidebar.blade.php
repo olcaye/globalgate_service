@@ -11,11 +11,20 @@
             <li class="sidebar-title">
                 Business
             </li>
-            <li class="@if (Request::routeIs('admin.submission')) {{'active-page'}} @endif">
+            <li class="@if (request()->routeIs('admin.submission')) {{'active-page'}} @endif">
                 <a href="{{ route('admin.submission') }}"><i class="material-icons-two-tone">dashboard</i>Submissions</a>
             </li>
-            <li class="@if (Request::routeIs('admin.agency.index')) {{'active-page'}} @endif">
-                <a href="{{ route('admin.agency.index') }}"><i class="material-icons-two-tone">store</i>Agencies</a>
+            <li class="@if (request()->routeIs('admin.agency.index') || request()->routeIs('admin.agency.unverified')) {{'active-page'}} @endif">
+                <a href=""><i class="material-icons-two-tone">store</i>Agencies<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('admin.agency.index') }}" class="@if(request()->routeIs('admin.agency.index') && request()->get('status') != '0') {{'active'}} @endif">Agencies</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.agency.index', ['status' => '0']) }}" class="@if(request()->routeIs('admin.agency.index') && request()->get('status') == '0') {{'active'}} @endif">
+                            Unconfirmed Ones</a>
+                    </li>
+                </ul>
             </li>
             <li class="sidebar-title">
                 Other
