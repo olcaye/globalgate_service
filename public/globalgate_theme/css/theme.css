@@ -56,7 +56,6 @@ main {
     z-index: 2;
     position: absolute;
     top: 0;
-    height: 375px;
     width: 100vw;
     background: #1C375E;
     -webkit-clip-path: polygon(0 0, 100vw 0, 100vw 25%, 0 100%);
@@ -101,6 +100,7 @@ main {
 
 #slogan {
     align-items: center;
+    justify-content: center;
 }
 
 #slogan > img {
@@ -156,7 +156,6 @@ main {
 .card .package-name > .flex-column > span:first-of-type {
     font-family: 'Azo Sans', sans-serif;
     font-weight: 500;
-    font-size: 50px;
 }
 
 .card .package-name > .flex-column > span:first-of-type small {
@@ -292,7 +291,7 @@ main {
 
 footer {
     background-color: #0C2A4D;
-    height: 300px;
+    min-height: 300px;
     padding-top: 20px;
 }
 
@@ -318,10 +317,6 @@ footer {
     color: #ffffff;
     text-decoration: none;
     font-weight: 300;
-}
-
-#footer-contact .col-4 img {
-    margin-right: 45px;
 }
 
 .btn-primary-line {

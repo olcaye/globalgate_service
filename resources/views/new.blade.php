@@ -13,8 +13,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Page Title</title>
+    <title>GlobalGate</title>
     <link rel="stylesheet" href="{{ asset('globalgate_theme/css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('globalgate_theme/css/responsive.css') }}">
 </head>
 <body>
 <main class="main" role="main">
@@ -31,8 +32,8 @@
         </div>
         <div id="hero-content" class="container-fluid">
             <div class="row">
-                <div class="col-4 offset-sm-4" id="slogan">
-                    <img src="{{ asset('globalgate_theme/images/slogan.png') }}" alt="">
+                <div class="col-12 col-md-12 offset-lg-4 col-lg-4" id="slogan">
+                    <img class="img-fluid" src="{{ asset('globalgate_theme/images/slogan.png') }}" alt="">
                 </div>
                 <div class="col-4" id="student">
                     <img src="{{ asset('globalgate_theme/images/student.png') }}" alt="">
@@ -43,7 +44,7 @@
     <section class="services-section" id="services" style="min-height: 1000px">
         <div class="container">
             <div class="row">
-                <div class="col-4 px-0">
+                <div class="col-12 col-md-12 col-lg-4 card-wrapper">
                     <div class="card" id="golden-package">
                         <div class="package-name">
                             <div class="d-flex flex-column">
@@ -96,7 +97,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 px-0">
+                <div class="col-12 col-md-12 col-lg-4 card-wrapper">
                     <div class="card" id="silver-package">
                         <div class="package-name">
                             <div class="d-flex flex-column">
@@ -142,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 px-0">
+                <div class="col-12 col-md-12 col-lg-4 card-wrapper">
                     <div class="card" id="normal-package">
                         <div class="package-name">
                             <div class="d-flex flex-column">
@@ -151,7 +152,7 @@
                                 <span>10% Service Discount</span>
                             </div>
                         </div>
-                        <div class="package-features mt-2">
+                        <div class="package-features">
                             <h4>Free Consultations</h4>
                             <div class="d-flex flex-column">
                                 <ul>
@@ -197,17 +198,17 @@
         </div>
     </div>
     <div class="container" id="footer-contact">
-        <div class="row">
-            <div class="col-4">
-                <div class="d-flex justify-content-center align-items-center">
+        <div class="row mx-0 px-0">
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="d-flex justify-content-center align-items-center contact-area">
                     <img src="{{ asset('globalgate_theme/images/phone.png') }}" alt="email">
                     <div>
                         Service: <a href="tel:+905488530056">+90 5488530056</a>
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="d-flex justify-content-center align-items-center contact-area">
                     <img src="{{ asset('globalgate_theme/images/mail.png') }}" alt="email">
 
                     <div>
@@ -215,11 +216,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="d-flex justify-content-center align-items-center contact-area">
                     <img src="{{ asset('globalgate_theme/images/www.png') }}" alt="website">
                     <div>
-                        <a href="www.globalgatecy.com" target="_blank">www.globalgatecy.com</a>
+                        <a href="http://services.globalgatecy.com" target="_blank">services.globalgatecy.com</a>
                     </div>
                 </div>
             </div>
