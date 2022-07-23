@@ -31,6 +31,10 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+Route::get('/new-ui', function () {
+    return view('new');
+})->name('new');
+
 Auth::routes([
     'login'    => true,
     'logout'   => true,

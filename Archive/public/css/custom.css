@@ -1,0 +1,111 @@
+#profileSettings .nav-item a {
+    color: rgb(0,0,0);
+}
+
+form .unchangeable-field {
+    display: block;
+    padding: 5px 0;
+}
+
+.agent-avatar {
+    position: absolute;
+    top: -45px;
+ /*   width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccd6ed;
+    cursor: pointer;*/
+}
+
+.page-link, .page-item.disabled .page-link {
+    padding: 5px 15px;
+}
+
+.agent-avatar img {
+    height: 90px;
+    width: 90px;
+    border-radius: 20px;
+}
+
+form#profileSettingsForm input[type="file"] {
+    display: none;
+}
+
+.avatar-upload {
+    cursor: pointer;
+}
+
+
+.material-icons.avatar-edit {
+    color: #2269F5;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s, visibility .2s;
+}
+
+.avatar-upload:hover .avatar-edit {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+#profile .card .card-body {
+    padding: 70px 30px;
+}
+
+#myTabContent .form-label {
+    border-bottom: 1px solid rgba(204, 214, 237, 0.6);
+}
+
+#staff-details {
+    margin-bottom: 30px;
+}
+
+#staff-details .card {
+    height: 100%;
+}
+
+.event-agent-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.event-agent-list:not(:last-child) {
+    padding-bottom: 13px;
+    border-bottom: 1px solid #F4F7FA;
+    margin-bottom: 13px
+}
+
+.event-agent-list__left {
+    display: flex;
+    align-items: center;
+}
+
+.agent-badge-small {
+    font-size: 11px;
+}
+
+
+#map {
+    height: 100%;
+}
+
+.map-container {
+    height: 300px;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+.form-row.required label:after {
+    content:"*";
+    color:red;
+    padding-left: 5px;
+}

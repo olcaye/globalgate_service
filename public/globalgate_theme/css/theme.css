@@ -1,0 +1,366 @@
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('../fonts/AzoSans-Light.otf') format("opentype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('../fonts/AzoSans.otf') format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('../fonts/AzoSans-Black.otf') format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('../fonts/AzoSans-BlackItalic.otf') format("opentype");
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('../fonts/AzoSans-Bold.otf') format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('../fonts/AzoSans-BoldItalic.otf') format("opentype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+body {
+    font-family: 'Azo Sans', sans-serif;
+}
+
+main {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#blue-header {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    height: 375px;
+    width: 100vw;
+    background: #1C375E;
+    -webkit-clip-path: polygon(0 0, 100vw 0, 100vw 25%, 0 100%);
+    clip-path: polygon(0 0, 100vw 0, 100vw 25%, 0 100%);
+}
+
+.shadow-1 {
+    filter: drop-shadow(2.83px 8.5px 2.83px rgba(0, 0, 0, 0.19));
+    position: relative;
+    z-index: 2;
+}
+
+.shadow-2 {
+    filter: drop-shadow(2.83px 8.5px 2.83px rgba(0, 0, 0, 0.19));
+    position: relative;
+    z-index: 1;
+}
+
+
+#lightblue-header {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    height: 275px;
+    width: 100vw;
+    background: #7BA0C4;
+    -webkit-clip-path: polygon(0 0, 100vw 0, 100vw 5%, 0 100%);
+    clip-path: polygon(0 0, 100vw 0, 100vw 100%, 0 5%);
+}
+
+#hero-content > .row {
+    height: 700px;
+    justify-content: center;
+    flex-wrap: nowrap;
+
+}
+
+#hero-content > .row > div[class^="col"] {
+    z-index: 3;
+    display: flex;
+}
+
+#slogan {
+    align-items: center;
+}
+
+#slogan > img {
+    margin-top: 150px;
+}
+
+#student {
+    align-items: flex-end;
+}
+
+#logo {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    margin-left: 3%;
+}
+
+#logo > img {
+    height: 300px;
+    width: 300px;
+}
+
+#services {
+    background-color: #C8D6EB;
+    padding-top: 15px;
+}
+
+#services .col-4:first-of-type {
+    z-index: 3;
+}
+
+#services .col-4:nth-of-type(2) {
+    z-index: 2;
+}
+
+#services .col-4:nth-of-type(2) {
+    z-index: 2;
+}
+
+
+.card {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    justify-content: flex-end;
+    filter: drop-shadow(9.83px -9.5px 10px rgba(0, 0, 0, 0.30));
+}
+
+.card .package-name {
+    padding: 30px 25px;
+}
+
+.card .package-name > .flex-column > span:first-of-type {
+    font-family: 'Azo Sans', sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.card .package-name > .flex-column > span:first-of-type small {
+    font-weight: 700;
+    font-size: 38px;
+    padding-left: 10px;
+}
+
+.card .package-name > .flex-column > span {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.card .package-features {
+    font-family: 'Azo Sans', sans-serif;
+    font-weight: 300;
+    padding: 20px 0;
+}
+
+.card .package-features h4 {
+    font-family: 'Azo Sans', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    padding-left: 2rem;
+    margin-bottom: 20px;
+
+}
+
+#services .col-4:last-of-type {
+    margin-bottom: 9%;
+}
+
+#normal-package .package-name {
+    background-color: #ffffff;
+}
+
+.placeholder-bg {
+    min-height: 75px;
+    margin-top: 40px;
+    filter: none;
+    background-color: #ffffff;
+}
+
+#silver-package .package-name {
+    background-color: #7BA0C4;
+}
+
+#golden-package .package-name {
+    background-color: #1C375E;
+}
+
+#silver-package .package-name span,
+#golden-package .package-name span {
+    color: #ffffff;
+}
+
+#normal-package .package-name span {
+    color : #7BA0C4;
+}
+
+#golden-package .package-features {
+    background-color: #DCC7B7;
+    color: #0B294C;
+}
+
+#silver-package .package-features {
+    background-color: #1C375E;
+    color: #ffffff;
+}
+
+#normal-package .package-features {
+    background-color: #FFFFFF;
+    color: #0B294C;
+
+}
+
+#normal-package .package-button {
+    background-color: #FFFFFF;
+}
+
+#silver-package .package-button {
+    background-color: #C8D6EB;
+}
+
+#silver-package .package-specials {
+    background-color: #C8D6EB;
+    padding: 20px 2rem 75px 2rem !important;
+}
+
+#golden-package .package-specials,
+#golden-package .package-button {
+    background-color: #7BA0C4;
+
+}
+
+#normal-package .package-features li,
+#golden-package .package-features li {
+    background: url(../images/arrow.png) no-repeat 0px 6px transparent;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0px 5px 40px;
+}
+
+#silver-package .package-features li {
+    background: url(../images/arrow2.png) no-repeat 0px 6px transparent;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0px 5px 40px;
+}
+
+
+
+.card .package-specials {
+    padding: 20px 2rem;
+}
+
+.card .package-specials > .flex-column > span:not(:last-of-type) {
+    font-weight: bold;
+}
+
+.card .package-specials > .flex-column > span:nth-of-type(1),
+.card .package-specials > .flex-column > span:nth-of-type(2) {
+    font-style: italic
+}
+
+#golden-package .package-specials {
+    color: #ffffff;
+}
+
+#silver-package .package-specials {
+    color: #0B294C;
+}
+
+footer {
+    background-color: #0C2A4D;
+    height: 300px;
+    padding-top: 20px;
+}
+
+#footer-note {
+    height: 150px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0B294C;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+#footer-contact {
+    padding: 35px 0;
+    font-size: 20px;
+}
+
+#footer-contact, #footer-contact a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+}
+
+#footer-contact .col-4 img {
+    margin-right: 45px;
+}
+
+.btn-primary-line {
+    width: 160px;
+    margin: auto;
+    display: inline-block;
+    height: 44px;
+    line-height: 45px;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #fff;
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 12px;
+    color: #fff;
+    letter-spacing: 0.75px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    outline: none !important;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none !important;
+}
+
+.package-button .btn-primary-line {
+    border: 1px solid transparent;
+    color: #ffffff;
+    height: 36px;
+    line-height: 36px;
+    background-color: #4E47DE;
+}
+
+.package-button .btn-primary-line:hover {
+    background: #DCC7B7;
+    color: #4E47DE;
+}
