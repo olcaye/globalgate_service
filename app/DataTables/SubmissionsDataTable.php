@@ -17,10 +17,14 @@ class SubmissionsDataTable extends DataTable
      *
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable()
+    public function dataTable($query)
     {
         return datatables()
-            ->eloquent($this->query())
+            ->eloquent($query)
+            ->addColumn('agency', function ($submission)
+            {
+                return $submission->agency ? $submission->agency['name'] : 'GlobalGate';
+            })
             ->addColumn('action', 'admin.datatable.submission_action');
     }
 
@@ -29,16 +33,16 @@ class SubmissionsDataTable extends DataTable
      *
      * @return Builder|\Illuminate\Database\Query\Builder|Collection
      */
-    public function query()
+    public function query(Submission $model)
     {
         $agency = $this->agency_id;
 
-        $submission = Submission::query()->where(function ($q) use($agency) {
+        return $model->with('agency')->select('submissions.*')->where(function ($q) use($agency) {
             if ($agency) {
                 $q->where('agency_id', $agency);
             }
         });
-        return $this->applyScopes($submission);
+
     }
 
     /**
@@ -51,6 +55,7 @@ class SubmissionsDataTable extends DataTable
         return $this->builder()
             ->setTableId('submissions-table')
             ->addTableClass('table-hover')
+            ->pageLength(20)
             ->columns($this->getColumns())
             ->ajax()
             ->parameters($this->getBuilderParameters());
@@ -88,7 +93,13 @@ class SubmissionsDataTable extends DataTable
             [
                 'data' => 'package',
                 'title' => 'Package',
-                'className' => 'col-md-3'
+                'className' => 'col-md-1'
+            ],
+            [
+                'title' => 'Agency',
+                'data'=>'agency',
+                'name'=>'agency.name',
+                'className' => 'col-md-2'
             ],
             [
                 'data' => 'status',

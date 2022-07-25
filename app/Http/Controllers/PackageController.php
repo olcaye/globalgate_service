@@ -14,7 +14,7 @@ class PackageController extends Controller
         $package = Submission::create($request->validated());
         if($package->wasRecentlyCreated == true) {
             $package->sendNotificationEmail();
-            return redirect()->back()->with(['success' => 'Successfully Created']);
+            return redirect()->back()->with(['message' => 'Successfully Created']);
         }
         return redirect()->back()->with(['message' => 'Something is wrong.']);
     }
