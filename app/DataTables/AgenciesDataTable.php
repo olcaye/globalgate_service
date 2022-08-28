@@ -33,14 +33,14 @@ class AgenciesDataTable extends DataTable
     {
         $is_verified = $this->agency_is_verified;
 
-        $submission = Agency::query()->where(function ($q) use($is_verified) {
+        $agency = Agency::query()->with('country')->where(function ($q) use($is_verified) {
             if ($is_verified == '0') {
                 $q->where('is_verified', '0');
             } else {
                 $q->where('is_verified', '1');
             }
-        })->orderBy('created_at','desc');
-        return $this->applyScopes($submission);
+        })->select('agencies.*');
+        return $this->applyScopes($agency);
     }
 
     /**
@@ -77,6 +77,7 @@ class AgenciesDataTable extends DataTable
     {
         return [
             [
+
                 'data' => 'name',
                 'title' => 'Agency Name',
                 'className' => 'col-md-4',
@@ -91,6 +92,12 @@ class AgenciesDataTable extends DataTable
                 'data' => 'email',
                 'title' => 'Email',
                 'className' => 'col-md-3'
+            ],
+            [
+                'data' => 'country.name',
+                'title' => 'Country',
+                'className' => 'col-md-3',
+                'searchable' => true,
             ],
             [
                 'data' => 'action',

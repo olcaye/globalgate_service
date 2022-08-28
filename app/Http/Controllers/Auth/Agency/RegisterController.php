@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Models\Agency;
+use App\Models\Country;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -50,11 +51,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[a-zA-Z0-9 ]+$/'],
+            'name' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[a-zA-Z0-9 ]+$/', 'unique:agencies'],
             'phone' => ['required', 'unique:agencies'],
             'address' => ['required', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:agencies'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'country' => ['required'],
+            'state' => ['required'],
+            'city' => ['required']
+        ],[
+            'name.unique' => 'This agent name is in use. Try different name.',
+            'country.required'=> 'Country is required',
+            'state.required'=> 'State is required',
+            'city.required'=> 'City/District is required'
         ]);
     }
 
@@ -85,6 +94,15 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'country_id' => $data['country'],
+            'state_id' => $data['state'],
+            'city_id' => $data['city']
         ]);
+    }
+
+    public function showAgencyRegistrationForm()
+    {
+        $data['countries'] = Country::get(["name", "id"]);
+        return view('auth.agency.register', $data);
     }
 }

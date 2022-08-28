@@ -8,7 +8,6 @@
             <div class="container-fluid">
                 <div class="row d-flex justify-content-center">
                     <div class="col-6">
-
                         <a href="{{ route('admin.agency.index') }}" class="text-decoration-none text-success">
                             <div class="d-flex justify-content-start align-items-center mb-lg-3">
                                 <i class="material-icons-two-tone">arrow_back</i>
@@ -36,20 +35,42 @@
                                                     </span>
                                             <span class="text-dark d-block">{{ $agency->phone }}</span>
                                         </div>
-                                        @isset($submission->whatsapp_number)
-                                        <div class="widget-payment-request-info-item">
-                                                    <span class="widget-payment-request-info-title d-block">
-                                                        Whatsapp Number
-                                                    </span>
-                                            <span class="text-dark d-block">{{ $agency->address }}</span>
-                                        </div>
-                                        @endisset
                                         <div class="widget-payment-request-info-item">
                                                     <span class="widget-payment-request-info-title d-block">
                                                         Email
                                                     </span>
                                             <span class="text-dark d-block">{{ $agency->email }}</span>
                                         </div>
+                                        <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        Address
+                                                    </span>
+                                            <span class="text-dark d-block">{{ $agency->address }}</span>
+                                        </div>
+                                        @isset($agency->country->name)
+                                        <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        Country
+                                                    </span>
+                                            <span class="text-dark d-block">{{ $agency->country->name }}</span>
+                                        </div>
+                                        @endisset
+                                        @isset($agency->state->name)
+                                        <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        State
+                                                    </span>
+                                            <span class="text-dark d-block">{{ $agency->state->name }}</span>
+                                        </div>
+                                        @endisset
+                                        @isset($agency->city->name)
+                                        <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        City or District
+                                                    </span>
+                                            <span class="text-dark d-block">{{ $agency->city->name }}</span>
+                                        </div>
+                                        @endisset
                                         <div class="widget-payment-request-info-item">
                                                     <span class="widget-payment-request-info-title d-block">
                                                         Created At

@@ -4,9 +4,13 @@ use App\DataTables\SubmissionsDataTable;
 use App\Http\Controllers\Admin\AgencyController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\Admin\SubmissionController;
+use App\Http\Controllers\Agency\ApplicationController;
+use App\Http\Controllers\Auth\Agency\ForgotPasswordController;
 use App\Http\Controllers\Auth\Agency\RegisterController;
+use App\Http\Controllers\Auth\Agency\ResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\UnverifiedController;
+use App\Http\Controllers\CountryStateCityController;
 use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -61,30 +65,35 @@ Route::post('/new-service', [PackageController::class, 'store'])->name('service-
 
 Route::middleware(['auth:agency', 'confirmed_account'])->prefix('agency')->name('agency.')->group(function () {
     /*Route::get('/', [\App\Http\Controllers\Agency\DashboardController::class, 'index'])->name('dashboard');*/
-    Route::get('/', [\App\Http\Controllers\Agency\ApplicationController::class, 'index'])->name('application.dashboard');
-    Route::get('/applications', [\App\Http\Controllers\Agency\ApplicationController::class, 'index'])->name('application.index');
-    Route::post('/new-application', [\App\Http\Controllers\Agency\ApplicationController::class, 'store'])->name('application.store');
-    Route::get('/new-application', [\App\Http\Controllers\Agency\ApplicationController::class, 'showForm'])->name('application.form');
+    Route::get('/', [ApplicationController::class, 'index'])->name('application.dashboard');
+    Route::get('/applications', [ApplicationController::class, 'index'])->name('application.index');
+    Route::post('/new-application', [ApplicationController::class, 'store'])->name('application.store');
+    Route::get('/new-application', [ApplicationController::class, 'showForm'])->name('application.form');
 
 });
 
 
 Route::prefix('agency')->name('agency.')->group(function () {
-    Route::get('/register', [\App\Http\Controllers\Auth\Agency\RegisterController::class, 'showAgencyRegistrationForm'])->name('register');
-    Route::post('/register', [\App\Http\Controllers\Auth\Agency\RegisterController::class, 'register'])->name('register.post');
+    Route::get('/register', [RegisterController::class, 'showAgencyRegistrationForm'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
     Route::get('/login', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'login'])->name('login.post');
     Route::post('/logout', [\App\Http\Controllers\Auth\Agency\LoginController::class, 'logout'])->name('logout');
 
-    Route::post('/password/email',[\App\Http\Controllers\Auth\Agency\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-    Route::get('/password/reset',[\App\Http\Controllers\Auth\Agency\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    Route::post('/password/reset',[\App\Http\Controllers\Auth\Agency\ResetPasswordController::class, 'reset'])->name('password.update');
-    Route::get('/password/reset/{token}',[\App\Http\Controllers\Auth\Agency\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/password/email',[ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/password/reset',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/password/reset',[ResetPasswordController::class, 'reset'])->name('password.update');
+    Route::get('/password/reset/{token}',[ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 });
 
 
 Route::get('/unverified', [UnverifiedController::class, 'index'])->name('unverified');
+
+Route::get('/countries', [CountryStateCityController::class, 'index']);
+Route::post('/api/fetch-states', [CountryStateCityController::class, 'fetchState']);
+Route::post('/api/fetch-cities', [CountryStateCityController::class, 'fetchCity']);
+Route::post('/api/state', [CountryStateCityController::class, 'singleState']);
 
 /*Route::get('/reset-password/{token}/{email}', function ($token, $email) {
     return view('auth.reset-password', [

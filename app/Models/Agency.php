@@ -6,6 +6,7 @@ use App\Mail\FormSubmitted;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
@@ -32,7 +33,10 @@ class Agency extends Authenticatable
         'name',
         'name_abbrev',
         'password',
-        'verified_at'
+        'verified_at',
+        'country_id',
+        'state_id',
+        'city_id'
     ];
 
     /**
@@ -56,6 +60,20 @@ class Agency extends Authenticatable
 
     public function sendPasswordResetNotification($token) {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function country(): BelongsTo {
+        return $this->belongsTo(Country::class)->withDefault([
+            'name' => 'Empty',
+        ]);
+    }
+
+    public function state(): BelongsTo {
+        return $this->belongsTo(State::class);
+    }
+
+    public function city(): BelongsTo {
+        return $this->belongsTo(City::class);
     }
 
 }
