@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Agency;
+namespace App\Http\Controllers\Auth\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Agency;
+use App\Models\Client;
 use App\Models\Country;
-use App\Models\State;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/unverified';
+    protected $redirectTo = '/client';
 
     /**
      * Create a new controller instance.
@@ -46,7 +45,7 @@ class RegisterController extends Controller
 
     public function guard()
     {
-        return Auth::guard('agency');
+        return Auth::guard('client');
     }
 
     /**
@@ -58,19 +57,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[a-zA-Z0-9 ]+$/', 'unique:agencies'],
-            'phone' => ['required', 'unique:agencies'],
+            'name' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[a-zA-Z0-9 ]+$/', 'unique:clients'],
+            'phone_number' => ['required', 'unique:clients'],
             'address' => ['required', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:agencies'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:clients'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'country' => ['required'],
-            'state' => ['required'],
-            'city' => ['required']
         ],[
             'name.unique' => 'This agent name is in use. Try different name.',
-            'country.required'=> 'Country is required',
-            'state.required'=> 'State is required',
-            'city.required'=> 'City/District is required'
+            'country.required'=> 'Nationality is required',
         ]);
     }
 
@@ -78,46 +73,23 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\Agency
+     * @return Client
      */
     protected function create(array $data)
     {
-        $agencyName = $data['name'];
-        $firstLetter =  substr($agencyName,0,1);
-        $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U", " ");
-        $agencyName = str_replace($vowels, "", $agencyName);
-
-        if(strlen($agencyName) >= 10) {
-            $agencyName = substr($agencyName, 0, 8) . rand(100,999);
-        }
-        if (in_array($firstLetter, $vowels)) {
-            $agencyName = $firstLetter . $agencyName;
-        }
-
-        return Agency::create([
+        return Client::create([
             'name' => $data['name'],
-            'name_abbrev' => strtoupper($agencyName),
-            'phone' => $data['phone'],
+            'phone_number' => $data['phone_number'],
             'address' => $data['address'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'country_id' => $data['country'],
-            'state_id' => $data['state'],
-            'city_id' => $data['city']
         ]);
     }
 
-    public function showAgencyRegistrationForm()
+    public function showClientRegistrationForm()
     {
-        // all countries
-        // $data['countries'] = Country::get(["name", "id"]);
-
-        // only KKTC
-        $country = Country::get(["name", "id"])->find(56);
-        $state = State::get(['name', 'id'])->find(913);
-        return view('auth.agency.register', [
-            'country' => $country,
-            'state' => $state
-        ]);
+        $data['countries'] = Country::get(["name", "id"]);
+        return view('auth.client.register', $data);
     }
 }

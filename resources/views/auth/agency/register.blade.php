@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Login</title>
+    <title>Register</title>
 
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
@@ -138,14 +138,15 @@
         <div class="form-group">
             <select class="countries form-control @error('country') is-invalid @enderror"
                     id="country-dd" name="country" data-placeholder="Select A Country">
-                <option value=""></option>
+                <option value="{{ $country->id }}" selected>{{ $country->name }}</option>
+               {{-- <option value=""></option>
                 @foreach ($countries as $data)
                     @if (old('country') == $data->id)
                         <option value="{{ $data->id }}" selected>{{ $data->name }}</option>
                     @else
                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                     @endif
-                @endforeach
+                @endforeach--}}
             </select>
             @if ($errors->has('country'))
                 <div class="invalid-feedback">
@@ -158,6 +159,7 @@
     <div class="mb-3" id="state-dd-wrapper">
         <div class="form-group">
             <select id="state-dd" class="form-control @error('state') is-invalid @enderror" name="state" >
+                <option value="{{ $state->id }}" selected>{{ $state->name }}</option>
             </select>
             @if ($errors->has('state'))
                 <div class="invalid-feedback">
@@ -198,33 +200,38 @@
         @endif
     </div>
 
+    <input type="hidden" name="country" value="{{ $country->id }}">
+    <input type="hidden" name="state" value="{{ $state->id }}">
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#country-dd, #state-dd, #city-dd').select2({
+        $('#city-dd').select2({
             width: 'resolve' // need to override the changed default
+        });
+
+        $('#country-dd, #state-dd').select2({
+            disabled: true
         });
     });
 
 
-
-
     $(document).ready(function () {
 
-        if(!$('#country-dd').val()) {
+        /*if(!$('#country-dd').val()) {
             $('#state-dd-wrapper, #city-dd-wrapper').hide();
         }
 
         if(!$('#state-dd').val()) {
             $('#city-dd-wrapper').hide();
-        }
+        }*/
 
 
 
-        let state = '{{ old('state') }}';
+       /* let state = '{{ old('state') }}';
         if($('#country-dd').val()) {
             if(state) {
                 getState(state);
@@ -234,9 +241,30 @@
                 fetchStates($('#country-dd').val())
             }
             $('#state-dd-wrapper').show();
-        }
+        }*/
 
-        console.log(state);
+
+        (function(){
+            $("#city-dd").html('');
+            $.ajax({
+                url: "{{url('api/fetch-cities')}}",
+                type: "POST",
+                data: {
+                    state_id: 913,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res)
+                    $('#city-dd-wrapper').fadeIn();
+                    $('#city-dd').html('<option value="">Select City</option>');
+                    $.each(res.cities, function (key, value) {
+                        $("#city-dd").append('<option value="' + value
+                            .id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        }())
 
         function getState(stateID) {
             $("#state-dd").html('');

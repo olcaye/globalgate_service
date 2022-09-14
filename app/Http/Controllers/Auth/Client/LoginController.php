@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Agency;
+namespace App\Http\Controllers\Auth\Client;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -10,19 +10,19 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/agency';
+    protected $redirectTo = '/client';
 
     public function __construct()
     {
-        $this->middleware(['guest:agency', 'guest:web', 'guest:client'])->except('logout');
+        $this->middleware(['guest:agency', 'guest:web'])->except('logout');
     }
 
     public function guard()
     {
-        return Auth::guard('agency');
+        return Auth::guard('client');
     }
     public function showLoginForm()
     {
-        return view('auth.agency.login');
+        return view('auth.client.login');
     }
 }
